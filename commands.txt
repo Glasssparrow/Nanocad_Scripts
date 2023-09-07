@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
-  <description>Custom commands</description>
+
+  <description>Set all colors to 256</description>
   <command name="blocks_colors" weight="30" cmdtype="1" caps="4">
     <description>Set colors of objects inside all blocks to 256</description>
     <script lang="JScript">
@@ -37,58 +38,8 @@ for (i = 0; i<blocks.Count; i++) {
 
 
 
-
-
 ]]></script>
   </command>
-
-
-
-<description>Creates a star as weight 30 polyline</description>
-  <command name="star" weight="30" cmdtype="1" caps="4">
-    <description>Creates the multiray star as lightweight polyline</description>
-    <script lang="JScript">
-      <![CDATA[
-
-
-
-
-var ms = ThisDrawing.ModelSpace;
-var ut  = ThisDrawing.Utility;
-var ptCenter = ut.GetPoint(null, "Укажите центр звезды");
-var n;
-
-while ((n = ut.GetInteger("Укажите количество лучей (больше 2х)")) < 3)
-  ;
-
-var d = ut.GetDistance(ptCenter, "Задайте внутренний радиус")
-var D = ut.GetDistance(ptCenter, "Задайте внешний радиус")
-var da = Math.PI * 2 / n;
-var hd = da / 2;
-
-for (i = 0; i < n; ++i)  {
-  var a = da * i;
-  var pt1 = ut.PolarPoint(ptCenter, a - hd, d)
-  var pt2 = ut.PolarPoint(ptCenter, a, D)
-  var pt3 = ut.PolarPoint(ptCenter, a + hd, d)
-  ms.AddLine(pt1, pt2);
-  ms.AddLine(pt2, pt3);
-}
-
-function ptdump(ut, pt)
-{
-  var sp = new VBArray(ut.CreateSafeArrayFromVector(pt))
-  return  "(" + sp.toArray() + ")";
-}
-
-
-
-
-
-
-]]></script>
-  </command>
-
 
 
 </package>
