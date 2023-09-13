@@ -34,7 +34,11 @@ else {
 }
 
 for (i=0; i<model.Count; i++) {
-  ut.Prompt(i)
-  ut.Prompt(model.Item(i).ObjectName)
+  //ut.Prompt(i)
+  //ut.Prompt(model.Item(i).ObjectName)
+  if (model.Item(i).ObjectName == "AcDbPolyline") {
+    ut.Prompt(model.Item(i).ObjectName)
+    ut.Prompt(model.Item(i).Layer)
+  }
 }
  
