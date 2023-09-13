@@ -36,7 +36,13 @@ else {
 for (i=0; i<model.Count; i++) {
   //ut.Prompt(i)
   //ut.Prompt(model.Item(i).ObjectName)
-  if (model.Item(i).ObjectName == "AcDbPolyline") {
+  if (model.Item(i).ObjectName == "AcDbPolyline" && 
+      model.Item(i).Layer == "!Метки размеров") {
+    ut.Prompt(model.Item(i).ObjectName)
+    ut.Prompt(model.Item(i).Layer)
+  }
+  if (model.Item(i).ObjectName == "AcDbBlockReference" && 
+      model.Item(i).Layer == "!Светильники") {
     ut.Prompt(model.Item(i).ObjectName)
     ut.Prompt(model.Item(i).Layer)
   }
