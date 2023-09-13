@@ -40,11 +40,13 @@ for (i=0; i<model.Count; i++) {
       model.Item(i).Layer == "!Метки размеров") {
     ut.Prompt(model.Item(i).ObjectName)
     ut.Prompt(model.Item(i).Layer)
+    ut.Prompt(model.Item(i).Length)
+    //ut.Prompt(model.Item(i).Coordinates)
   }
   if (model.Item(i).ObjectName == "AcDbBlockReference" && 
       model.Item(i).Layer == "!Светильники") {
-    ut.Prompt(model.Item(i).ObjectName)
-    ut.Prompt(model.Item(i).Layer)
+    //ut.Prompt(model.Item(i).ObjectName)
+    //ut.Prompt(model.Item(i).Layer)
   }
 }
  
