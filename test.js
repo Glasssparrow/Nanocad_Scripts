@@ -38,10 +38,11 @@ for (i=0; i<model.Count; i++) {
   //ut.Prompt(model.Item(i).ObjectName)
   if (model.Item(i).ObjectName == "AcDbPolyline" && 
       model.Item(i).Layer == "!Метки размеров") {
-    ut.Prompt(model.Item(i).ObjectName)
-    ut.Prompt(model.Item(i).Layer)
-    ut.Prompt(model.Item(i).Length)
-    //ut.Prompt(model.Item(i).Coordinates)
+    ut.Prompt(model.Item(i).ObjectName + " " + model.Item(i).Layer)
+    
+    var VVV = ut.CreateSafeArrayFromVector(model.Item(i).Coordinates)
+    var CoordArray = VVV.toArray()
+    ut.Prompt(CoordArray)
   }
   if (model.Item(i).ObjectName == "AcDbBlockReference" && 
       model.Item(i).Layer == "!Светильники") {
