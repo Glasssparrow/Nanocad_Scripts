@@ -48,6 +48,12 @@ for (i=0; i<model.Count; i++) {
       model.Item(i).Layer == "!Светильники") {
     //ut.Prompt(model.Item(i).ObjectName)
     //ut.Prompt(model.Item(i).Layer)
+    ut.Prompt("start test")
+    var AAA = model.Item(i).Coordinate
+    var v1 = ut.CreateSafeArrayFromVector(AAA) // Не работает
+    //var v2 = v1.toArray()
+    ut.Prompt(model.Item(i).Coordinates)
+    ut.Prompt("end test")
   }
 }
  
