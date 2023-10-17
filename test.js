@@ -49,10 +49,10 @@ for (i=0; i<model.Count; i++) {
     //ut.Prompt(model.Item(i).ObjectName)
     //ut.Prompt(model.Item(i).Layer)
     ut.Prompt("start test")
-    var AAA = model.Item(i).Coordinate
-    var v1 = ut.CreateSafeArrayFromVector(AAA) // Не работает
-    //var v2 = v1.toArray()
-    ut.Prompt(model.Item(i).Coordinates)
+    var AAA = model.Item(i).InsertionPoint
+    var v1 = ut.CreateSafeArrayFromVector(AAA)
+    var v2 = v1.toArray()
+    ut.Prompt(v2)
     ut.Prompt("end test")
   }
 }
