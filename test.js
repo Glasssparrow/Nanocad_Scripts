@@ -12,6 +12,9 @@ var lines_layer_name = "!Метки размеров"
 var items_layer
 var lines_layer
 
+var blocks_coord = []
+var axis_coord = []
+
 var check = 0
 
 for (i=0; i < layers.Count; i++) {
@@ -38,22 +41,24 @@ for (i=0; i<model.Count; i++) {
   //ut.Prompt(model.Item(i).ObjectName)
   if (model.Item(i).ObjectName == "AcDbPolyline" && 
       model.Item(i).Layer == "!Метки размеров") {
-    ut.Prompt(model.Item(i).ObjectName + " " + model.Item(i).Layer)
+    //ut.Prompt(model.Item(i).ObjectName + " " + model.Item(i).Layer)
     
     var VVV = ut.CreateSafeArrayFromVector(model.Item(i).Coordinates)
     var CoordArray = VVV.toArray()
-    ut.Prompt(CoordArray)
+    //ut.Prompt(CoordArray)
   }
   if (model.Item(i).ObjectName == "AcDbBlockReference" && 
       model.Item(i).Layer == "!Светильники") {
     //ut.Prompt(model.Item(i).ObjectName)
     //ut.Prompt(model.Item(i).Layer)
-    ut.Prompt("start test")
+    //ut.Prompt("start test")
     var AAA = model.Item(i).InsertionPoint
     var v1 = ut.CreateSafeArrayFromVector(AAA)
     var v2 = v1.toArray()
-    ut.Prompt(v2)
-    ut.Prompt("end test")
+    blocks_coord.push(v2)
+    //ut.Prompt(v2)
+    //ut.Prompt("end test")
   }
 }
- 
+
+ut.Prompt(blocks_coord[0])
