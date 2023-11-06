@@ -13,7 +13,7 @@ var items_layer
 var lines_layer
 
 var blocks_coord = []
-var axis_coord = []
+var axis_segment = []
 
 var check = 0
 
@@ -42,9 +42,18 @@ for (i=0; i<model.Count; i++) {
   if (model.Item(i).ObjectName == "AcDbPolyline" && 
       model.Item(i).Layer == "!Метки размеров") {
     //ut.Prompt(model.Item(i).ObjectName + " " + model.Item(i).Layer)
-    
     var VVV = ut.CreateSafeArrayFromVector(model.Item(i).Coordinates)
     var CoordArray = VVV.toArray()
+    //ut.Prompt(CoordArray.length)
+    for (j=0; j<(CoordArray.length/2-1);j++) {
+    //ut.Prompt(CoordArray)
+    var line_segment = [
+      [CoordArray[2*j], CoordArray[2*j+1]],
+      [CoordArray[2*j+2], CoordArray[2*j+3]]
+    ]
+    //ut.Prompt(line_segment)
+    axis_segment.push(line_segment)
+    }
     //ut.Prompt(CoordArray)
   }
   if (model.Item(i).ObjectName == "AcDbBlockReference" && 
@@ -61,4 +70,5 @@ for (i=0; i<model.Count; i++) {
   }
 }
 
-ut.Prompt(blocks_coord[0])
+ut.Prompt(axis_segment)
+ut.Prompt(blocks_coord)
