@@ -1,3 +1,4 @@
+var drawing = ThisDrawing
 var ms = ThisDrawing.ModelSpace;
 var ut  = ThisDrawing.Utility;
 var db = ThisDrawing.Database
@@ -72,3 +73,18 @@ for (i=0; i<model.Count; i++) {
 
 ut.Prompt(axis_segment)
 ut.Prompt(blocks_coord)
+var start_x = 0
+var start_y = 0
+var end_x = 100
+var end_y = 0
+var height = 50
+
+ut.Prompt("Начало теста\n")
+var command = (
+"Размер "+String(start_x)+","
++String(start_y)+" "+String(end_x)+","+String(end_y)+" "
+)
+command += String(end_x)
+command += ","+String(end_y-height)+"\n"
+ut.Prompt(command)
+drawing.SendCommand(command)
