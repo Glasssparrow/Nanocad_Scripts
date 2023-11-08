@@ -94,5 +94,10 @@ drawing.SendCommand(command)
 //draw_dim(-200, start_y, end_x, end_y, height)
 
 for (i=0; i<blocks_coord.length; i++) {
-ut.Prompt(blocks_coord[i])
+  for (j=0; j<axis_segment.length; j++) {
+      ut.Prompt(axis_segment[j])
+    }
+  for (j=0; j<blocks_coord.length; j++) {
+      ut.Prompt(blocks_coord[j])
+    }
 }
