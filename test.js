@@ -92,3 +92,7 @@ drawing.SendCommand(command)
 
 //draw_dim(start_x, start_y, end_x, end_y, height)
 //draw_dim(-200, start_y, end_x, end_y, height)
+
+for (i=0; i<blocks_coord.length; i++) {
+ut.Prompt(blocks_coord[i])
+}
