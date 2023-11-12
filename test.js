@@ -9,6 +9,7 @@ ut.Prompt("Начало работы скрипта")
 
 var items_layer_name = "!Светильники"
 var lines_layer_name = "!Метки размеров"
+var height_difference_allowed = 1000
 
 var items_layer
 var lines_layer
@@ -93,11 +94,26 @@ drawing.SendCommand(command)
 //draw_dim(start_x, start_y, end_x, end_y, height)
 //draw_dim(-200, start_y, end_x, end_y, height)
 
+var left_dim_exist
+var right_dim_exist
+var points_list
+var top_of_segment
+var bottom_of_segment
 for (i=0; i<blocks_coord.length; i++) {
   for (j=0; j<axis_segment.length; j++) {
-      ut.Prompt(axis_segment[j])
+      if (axis_segment[j][0][1] == axis_segment[j][1][1]) {
+        continue;
+      }
+      else { if (axis_segment[j][0][1] > axis_segment[j][1][1]) {
+        ut.Prompt("Нормально");
+      }
+      else {
+        ut.Prompt("ВВерх ногами");
+      }}
     }
   for (j=0; j<blocks_coord.length; j++) {
-      ut.Prompt(blocks_coord[j])
+      //ut.Prompt(blocks_coord[j])
     }
 }
+
+ut.Prompt("end test")
