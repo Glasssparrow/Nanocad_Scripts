@@ -105,10 +105,20 @@ for (i=0; i<blocks_coord.length; i++) {
         continue;
       }
       else { if (axis_segment[j][0][1] > axis_segment[j][1][1]) {
-        ut.Prompt("Нормально");
+        top_of_segment = axis_segment[j][0]
+        bottom_of_segment = axis_segment[j][1]
+        //ut.Prompt("Верх");
+        //ut.Prompt(top_of_segment);
+        //ut.Prompt("Низ");
+        //ut.Prompt(bottom_of_segment);
       }
       else {
-        ut.Prompt("ВВерх ногами");
+        top_of_segment = axis_segment[j][1]
+        bottom_of_segment = axis_segment[j][0]
+        ut.Prompt("Верх");
+        ut.Prompt(top_of_segment);
+        ut.Prompt("Низ");
+        ut.Prompt(bottom_of_segment);
       }}
     }
   for (j=0; j<blocks_coord.length; j++) {
