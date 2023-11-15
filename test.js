@@ -102,6 +102,7 @@ var bottom_of_segment
 var angle
 for (i=0; i<blocks_coord.length; i++) {
   for (j=0; j<axis_segment.length; j++) {
+      ut.Prompt(j)
       if (axis_segment[j][0][1] == axis_segment[j][1][1]) {
         continue;
       }
@@ -121,16 +122,24 @@ for (i=0; i<blocks_coord.length; i++) {
         //ut.Prompt("Низ");
         //ut.Prompt(bottom_of_segment);
       }}
-    }
-    ut.Prompt(bottom_of_segment[1] < blocks_coord[i][1])
-    if (
-      bottom_of_segment[1] < blocks_coord[i][1] && 
-      top_of_segment[1] > blocks_coord[i][1]
-    ) {
+      ut.Prompt(
+        bottom_of_segment[1] < blocks_coord[i][1] && 
+        top_of_segment[1] > blocks_coord[i][1]
+      )
+      if (
+        bottom_of_segment[1] < blocks_coord[i][1] && 
+        top_of_segment[1] > blocks_coord[i][1]
+      ) {
+        angle = Math.atan(
+          (top_of_segment[1]-bottom_of_segment[1])/
+          (top_of_segment[0]-bottom_of_segment[0])
+        )
+      //ut.Prompt(angle*180/3.14)
       //ut.Prompt("Верх");
       //ut.Prompt(top_of_segment);
       //ut.Prompt("Низ");
       //ut.Prompt(bottom_of_segment);
+      }
     }
   for (j=0; j<blocks_coord.length; j++) {
       //ut.Prompt(blocks_coord[j])
