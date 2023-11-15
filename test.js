@@ -99,6 +99,7 @@ var right_dim_exist
 var points_list
 var top_of_segment
 var bottom_of_segment
+var angle
 for (i=0; i<blocks_coord.length; i++) {
   for (j=0; j<axis_segment.length; j++) {
       if (axis_segment[j][0][1] == axis_segment[j][1][1]) {
@@ -113,13 +114,23 @@ for (i=0; i<blocks_coord.length; i++) {
         //ut.Prompt(bottom_of_segment);
       }
       else {
-        top_of_segment = axis_segment[j][1]
-        bottom_of_segment = axis_segment[j][0]
-        ut.Prompt("Верх");
-        ut.Prompt(top_of_segment);
-        ut.Prompt("Низ");
-        ut.Prompt(bottom_of_segment);
+        top_of_segment = axis_segment[j][1];
+        bottom_of_segment = axis_segment[j][0];
+        //ut.Prompt("Верх");
+        //ut.Prompt(top_of_segment);
+        //ut.Prompt("Низ");
+        //ut.Prompt(bottom_of_segment);
       }}
+    }
+    ut.Prompt(bottom_of_segment[1] < blocks_coord[i][1])
+    if (
+      bottom_of_segment[1] < blocks_coord[i][1] && 
+      top_of_segment[1] > blocks_coord[i][1]
+    ) {
+      //ut.Prompt("Верх");
+      //ut.Prompt(top_of_segment);
+      //ut.Prompt("Низ");
+      //ut.Prompt(bottom_of_segment);
     }
   for (j=0; j<blocks_coord.length; j++) {
       //ut.Prompt(blocks_coord[j])
