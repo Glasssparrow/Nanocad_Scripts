@@ -137,14 +137,23 @@ for (i=0; i<blocks_coord.length; i++) {
         (top_of_segment[0] - bottom_of_segment[0]) /
           (top_of_segment[1] - bottom_of_segment[1])
         )
-        points_list.push(x_coord, y_coord)
+        points_list.push([x_coord, y_coord])
       }
     }
   // ѕроходим по блокам и находим те что на схожей высоте
   // ƒобавл€ем их в список точек
   for (j=0; j<blocks_coord.length; j++) {
       if (i == j) {continue}
+      x_coord = blocks_coord[j][0]
+      y_coord = blocks_coord[j][1]
+      if (
+        (blocks_coord[i][1] - y_coord) < height_difference_allowed ||
+        (y_coord - blocks_coord[i][1]) < height_difference_allowed
+      ) {
+        points_list.push([x_coord, y_coord])
+      }
     }
+  points_list = []
 }
 
 ut.Prompt("end test")
