@@ -100,32 +100,26 @@ var points_list
 var top_of_segment
 var bottom_of_segment
 var angle
+//Проходим по всем блокам и чертим размеры
 for (i=0; i<blocks_coord.length; i++) {
+  // Проходим по всем фрагментам осей.
+  // Формируем список потенциальных точек для размеров.
   for (j=0; j<axis_segment.length; j++) {
-      ut.Prompt(j)
+      // Горизонтальные линии игнорируем
       if (axis_segment[j][0][1] == axis_segment[j][1][1]) {
         continue;
       }
+      // Находим верх и низ отрезка
       else { if (axis_segment[j][0][1] > axis_segment[j][1][1]) {
         top_of_segment = axis_segment[j][0]
         bottom_of_segment = axis_segment[j][1]
-        //ut.Prompt("Верх");
-        //ut.Prompt(top_of_segment);
-        //ut.Prompt("Низ");
-        //ut.Prompt(bottom_of_segment);
       }
       else {
         top_of_segment = axis_segment[j][1];
         bottom_of_segment = axis_segment[j][0];
-        //ut.Prompt("Верх");
-        //ut.Prompt(top_of_segment);
-        //ut.Prompt("Низ");
-        //ut.Prompt(bottom_of_segment);
       }}
-      ut.Prompt(
-        bottom_of_segment[1] < blocks_coord[i][1] && 
-        top_of_segment[1] > blocks_coord[i][1]
-      )
+      // Если низ отрезка ниже точки вставки блока и 
+      // верх выше тогда добавляем в список потенциальных точек.
       if (
         bottom_of_segment[1] < blocks_coord[i][1] && 
         top_of_segment[1] > blocks_coord[i][1]
@@ -134,13 +128,10 @@ for (i=0; i<blocks_coord.length; i++) {
           (top_of_segment[1]-bottom_of_segment[1])/
           (top_of_segment[0]-bottom_of_segment[0])
         )
-      //ut.Prompt(angle*180/3.14)
-      //ut.Prompt("Верх");
-      //ut.Prompt(top_of_segment);
-      //ut.Prompt("Низ");
-      //ut.Prompt(bottom_of_segment);
       }
     }
+  // Проходим по блокам и находим те что на схожей высоте и ближе 
+  // чем оси к текущему блоку.
   for (j=0; j<blocks_coord.length; j++) {
       //ut.Prompt(blocks_coord[j])
     }
