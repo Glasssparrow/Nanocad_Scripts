@@ -153,6 +153,9 @@ for (i=0; i<blocks_coord.length; i++) {
         points_list.push([x_coord, y_coord])
       }
     }
+  for (j=0; j<points_list.length; j++) {
+    ut.Prompt(points_list[j])
+  }
   points_list = []
 }
 
