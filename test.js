@@ -96,10 +96,14 @@ drawing.SendCommand(command)
 
 var left_dim_exist
 var right_dim_exist
-var points_list
+// Лист потенциальных точек для размеров
+var points_list = []
 var top_of_segment
 var bottom_of_segment
 var angle
+// Координаты для points_list
+var x_coord
+var y_coord
 //Проходим по всем блокам и чертим размеры
 for (i=0; i<blocks_coord.length; i++) {
   // Проходим по всем фрагментам осей.
@@ -128,12 +132,18 @@ for (i=0; i<blocks_coord.length; i++) {
           (top_of_segment[1]-bottom_of_segment[1])/
           (top_of_segment[0]-bottom_of_segment[0])
         )
+        y_coord = blocks_coord[i][1]
+        x_coord = (bottom_of_segment[0] +
+        (top_of_segment[0] - bottom_of_segment[0]) /
+          (top_of_segment[1] - bottom_of_segment[1])
+        )
+        points_list.push(x_coord, y_coord)
       }
     }
-  // Проходим по блокам и находим те что на схожей высоте и ближе 
-  // чем оси к текущему блоку.
+  // Проходим по блокам и находим те что на схожей высоте
+  // Добавляем их в список точек
   for (j=0; j<blocks_coord.length; j++) {
-      //ut.Prompt(blocks_coord[j])
+      if (i == j) {continue}
     }
 }
 
