@@ -153,8 +153,12 @@ for (i=0; i<blocks_coord.length; i++) {
         points_list.push([x_coord, y_coord])
       }
     }
+  // Проходим по списку потенциальных точек и находим точки для размеров
   for (j=0; j<points_list.length; j++) {
-    ut.Prompt(points_list[j])
+    if (
+      points_list[j][0] == blocks_coord[i][0]
+    ) {continue}
+    //ut.Prompt(points_list[j])
   }
   points_list = []
 }
