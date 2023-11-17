@@ -153,11 +153,32 @@ for (i=0; i<blocks_coord.length; i++) {
         points_list.push([x_coord, y_coord])
       }
     }
+  left_dim_exist = false
+  right_dim_exist = false
   // Проходим по списку потенциальных точек и находим точки для размеров
   for (j=0; j<points_list.length; j++) {
     if (
       points_list[j][0] == blocks_coord[i][0]
     ) {continue}
+    if (
+      !left_dim_exist &&
+      (points_list[j][0]-blocks_coord[i][0]) < 0
+    ) {
+      ut.Prompt("Левый размер")
+      ut.Prompt("Размер")
+      ut.Prompt(points_list[j][0])
+      ut.Prompt("Блок")
+      ut.Prompt(blocks_coord[i][0])
+    }
+    if (
+      !right_dim_exist &&
+      (points_list[j][0]-blocks_coord[i][0]) > 0) {
+      ut.Prompt("Правый размер")
+      ut.Prompt("Размер")
+      ut.Prompt(points_list[j][0])
+      ut.Prompt("Блок")
+      ut.Prompt(blocks_coord[i][0])
+    }
     //ut.Prompt(points_list[j])
   }
   points_list = []
