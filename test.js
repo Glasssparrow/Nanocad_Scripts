@@ -172,7 +172,8 @@ for (i=0; i<blocks_coord.length; i++) {
     }
     if (
       !right_dim_exist &&
-      (points_list[j][0]-blocks_coord[i][0]) > 0) {
+      (points_list[j][0]-blocks_coord[i][0]) > 0
+    ) {
       ut.Prompt("Правый размер")
       ut.Prompt("Размер")
       ut.Prompt(points_list[j][0])
