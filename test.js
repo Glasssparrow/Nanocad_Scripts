@@ -170,6 +170,13 @@ for (i=0; i<blocks_coord.length; i++) {
       ut.Prompt("Блок")
       ut.Prompt(blocks_coord[i][0])
     }
+    else { if (
+      right_dim_exist &&
+      (points_list[j][0]-blocks_coord[i][0]) < 0 &&
+      true
+    ) {
+      }
+    }
     if (
       !right_dim_exist &&
       (points_list[j][0]-blocks_coord[i][0]) > 0
@@ -179,6 +186,13 @@ for (i=0; i<blocks_coord.length; i++) {
       ut.Prompt(points_list[j][0])
       ut.Prompt("Блок")
       ut.Prompt(blocks_coord[i][0])
+    }
+    else { if (
+      right_dim_exist &&
+      (points_list[j][0]-blocks_coord[i][0]) > 0 &&
+      true
+    ) {
+      }
     }
     //ut.Prompt(points_list[j])
   }
