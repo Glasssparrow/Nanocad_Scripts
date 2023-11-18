@@ -10,6 +10,8 @@ ut.Prompt("Начало работы скрипта")
 var items_layer_name = "!Светильники"
 var lines_layer_name = "!Метки размеров"
 var height_difference_allowed = 1000
+// Высота размеров
+var height = 500
 
 var items_layer
 var lines_layer
@@ -75,12 +77,6 @@ for (i=0; i<model.Count; i++) {
 //ut.Prompt(axis_segment)
 //ut.Prompt(blocks_coord)
 
-var start_x = 0
-var start_y = 0
-var end_x = 100
-var end_y = 0
-var height = 50
-
 function draw_dim(start_x, start_y, end_x, end_y, height) {
 var command = (
 "Размер "+String(start_x)+","
@@ -94,6 +90,14 @@ drawing.SendCommand(command)
 //draw_dim(start_x, start_y, end_x, end_y, height)
 //draw_dim(-200, start_y, end_x, end_y, height)
 
+// Переменные для построения размеров
+var start_x
+var start_y
+var end_x
+var end_y
+
+
+// Есть ли размеры
 var left_dim_exist
 var right_dim_exist
 // Лист потенциальных точек для размеров
