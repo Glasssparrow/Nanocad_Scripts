@@ -168,11 +168,16 @@ for (i=0; i<blocks_coord.length; i++) {
       !left_dim_exist &&
       (points_list[j][0]-blocks_coord[i][0]) < 0
     ) {
-      ut.Prompt("Левый размер")
-      ut.Prompt("Размер")
-      ut.Prompt(points_list[j][0])
-      ut.Prompt("Блок")
-      ut.Prompt(blocks_coord[i][0])
+      left_dim_exist = true
+      end_x = blocks_coord[i][0]
+      end_y = blocks_coord[i][1]
+      start_x = points_list[j][0]
+      start_y = points_list[j][1]
+      //ut.Prompt("Левый размер")
+      //ut.Prompt("Размер")
+      //ut.Prompt(points_list[j][0])
+      //ut.Prompt("Блок")
+      //ut.Prompt(blocks_coord[i][0])
     }
     else { if (
       right_dim_exist &&
@@ -185,11 +190,11 @@ for (i=0; i<blocks_coord.length; i++) {
       !right_dim_exist &&
       (points_list[j][0]-blocks_coord[i][0]) > 0
     ) {
-      ut.Prompt("Правый размер")
-      ut.Prompt("Размер")
-      ut.Prompt(points_list[j][0])
-      ut.Prompt("Блок")
-      ut.Prompt(blocks_coord[i][0])
+      //ut.Prompt("Правый размер")
+      //ut.Prompt("Размер")
+      //ut.Prompt(points_list[j][0])
+      //ut.Prompt("Блок")
+      //ut.Prompt(blocks_coord[i][0])
     }
     else { if (
       right_dim_exist &&
@@ -200,6 +205,7 @@ for (i=0; i<blocks_coord.length; i++) {
     }
     //ut.Prompt(points_list[j])
   }
+  if (left_dim_exist) {draw_dim(start_x, start_y, end_x, end_y, height)}
   points_list = []
 }
 
