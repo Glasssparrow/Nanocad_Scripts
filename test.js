@@ -104,7 +104,6 @@ var right_dim_exist
 var points_list = []
 var top_of_segment
 var bottom_of_segment
-var angle
 // Координаты для points_list
 var x_coord
 var y_coord
@@ -132,10 +131,6 @@ for (i=0; i<blocks_coord.length; i++) {
         bottom_of_segment[1] < blocks_coord[i][1] && 
         top_of_segment[1] > blocks_coord[i][1]
       ) {
-        angle = Math.atan(
-          (top_of_segment[1]-bottom_of_segment[1])/
-          (top_of_segment[0]-bottom_of_segment[0])
-        )
         y_coord = blocks_coord[i][1]
         x_coord = (bottom_of_segment[0] +
         (top_of_segment[0] - bottom_of_segment[0]) /
