@@ -14,7 +14,7 @@ var lines_layer_name = "!Метки размеров"
 // могут иметь привязку друг к другу.
 var height_difference_allowed = 1000
 // Высота размеров
-var height = 500
+var height = 1000
 
 // Переменные в которые мы записываем слои
 var items_layer
@@ -205,7 +205,7 @@ for (i=0; i<blocks_coord.length; i++) {
     }
     //ut.Prompt(points_list[j])
   }
-  //if (left_dim_exist) {draw_dim(start_x, start_y, end_x, end_y, height)}
+  if (left_dim_exist) {draw_dim(start_x, start_y, end_x, end_y, height)}
   points_list = []
 }
 
