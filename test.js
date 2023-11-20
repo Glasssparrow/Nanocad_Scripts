@@ -90,6 +90,13 @@ command += ","+String(end_y-height)+"\n"
 drawing.SendCommand(command)
 }
 
+// —оздаем список х координат блоков
+// Ёто нужно дл€ исключени€ правых размеров до других блоков
+var blocks_x_coord = []
+for (i=0; i<blocks_coord.length; i++) {
+  blocks_x_coord.push(blocks_coord[i][0])
+}
+
 // ѕеременные дл€ построени€ левых размеров
 var start_x
 var start_y
@@ -106,6 +113,7 @@ var end_y_r
 // ≈сть ли размеры
 var left_dim_exist
 var right_dim_exist
+var right_dim_copy
 // Ћист потенциальных точек дл€ размеров
 var points_list = []
 var top_of_segment
@@ -209,7 +217,13 @@ for (i=0; i<blocks_coord.length; i++) {
   if (left_dim_exist) {
     draw_dim(start_x, start_y, end_x, end_y, height)
   }
-  if (right_dim_exist) {
+  right_dim_copy = false
+  for (k=0; k<blocks_x_coord.length; k++) {
+   if (blocks_x_coord[k] == start_x_r) {
+    right_dim_copy = true
+   }
+  }
+  if (right_dim_exist && !right_dim_copy) {
     draw_dim(start_x_r, start_y_r, end_x_r, end_y_r, height)
   }
   points_list = []
