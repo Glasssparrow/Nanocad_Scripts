@@ -132,9 +132,10 @@ for (i=0; i<blocks_coord.length; i++) {
         top_of_segment[1] > blocks_coord[i][1]
       ) {
         y_coord = blocks_coord[i][1]
-        x_coord = (bottom_of_segment[0] +
-        (top_of_segment[0] - bottom_of_segment[0]) /
-          (top_of_segment[1] - bottom_of_segment[1])
+        x_coord = (bottom_of_segment[0] + 
+        (blocks_coord[i][1] - bottom_of_segment[1]) *
+        (top_of_segment[0] - bottom_of_segment[0]) / 
+        (top_of_segment[1] - bottom_of_segment[1])  
         )
         points_list.push([x_coord, y_coord])
       }
