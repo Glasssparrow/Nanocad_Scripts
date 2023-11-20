@@ -12,7 +12,7 @@ var items_layer_name = "!Светильники"
 var lines_layer_name = "!Метки размеров"
 // Допустимая разница в высоте при которой светильники 
 // могут иметь привязку друг к другу.
-var height_difference_allowed = 1000
+var height_difference_allowed = 500
 // Высота размеров
 var height = 500
 
@@ -147,8 +147,7 @@ for (i=0; i<blocks_coord.length; i++) {
       x_coord = blocks_coord[j][0]
       y_coord = blocks_coord[i][1]
       if (
-        (blocks_coord[i][1] - y_coord) < height_difference_allowed ||
-        (y_coord - blocks_coord[i][1]) < height_difference_allowed
+        Math.abs(blocks_coord[j][1] - y_coord) < height_difference_allowed
       ) {
         points_list.push([x_coord, y_coord])
       }
@@ -169,28 +168,21 @@ for (i=0; i<blocks_coord.length; i++) {
       end_y = blocks_coord[i][1]
       start_x = points_list[j][0]
       start_y = points_list[j][1]
-      //ut.Prompt("Левый размер")
-      //ut.Prompt("Размер")
-      //ut.Prompt(points_list[j][0])
-      //ut.Prompt("Блок")
-      //ut.Prompt(blocks_coord[i][0])
     }
     else { if (
-      right_dim_exist &&
+      left_dim_exist &&
       (points_list[j][0]-blocks_coord[i][0]) < 0 &&
-      true
+      Math.abs(end_x - start_x) > 
+      Math.abs(end_x - points_list[j][0])
     ) {
+      start_x = points_list[j][0]
+      start_y = points_list[j][1]
       }
     }
     if (
       !right_dim_exist &&
       (points_list[j][0]-blocks_coord[i][0]) > 0
     ) {
-      //ut.Prompt("Правый размер")
-      //ut.Prompt("Размер")
-      //ut.Prompt(points_list[j][0])
-      //ut.Prompt("Блок")
-      //ut.Prompt(blocks_coord[i][0])
     }
     else { if (
       right_dim_exist &&
@@ -199,7 +191,6 @@ for (i=0; i<blocks_coord.length; i++) {
     ) {
       }
     }
-    //ut.Prompt(points_list[j])
   }
   if (left_dim_exist) {draw_dim(start_x, start_y, end_x, end_y, height)}
   points_list = []
