@@ -14,7 +14,7 @@ var lines_layer_name = "!Метки размеров"
 // могут иметь привязку друг к другу.
 var height_difference_allowed = 1000
 // Высота размеров
-var height = 1000
+var height = 500
 
 // Переменные в которые мы записываем слои
 var items_layer
@@ -144,7 +144,7 @@ for (i=0; i<blocks_coord.length; i++) {
   for (j=0; j<blocks_coord.length; j++) {
       if (i == j) {continue}
       x_coord = blocks_coord[j][0]
-      y_coord = blocks_coord[j][1]
+      y_coord = blocks_coord[i][1]
       if (
         (blocks_coord[i][1] - y_coord) < height_difference_allowed ||
         (y_coord - blocks_coord[i][1]) < height_difference_allowed
