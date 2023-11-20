@@ -215,4 +215,4 @@ for (i=0; i<blocks_coord.length; i++) {
   points_list = []
 }
 
-ut.Prompt("end test")
+ut.Prompt("Построение размеров завершено.")
