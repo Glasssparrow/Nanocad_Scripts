@@ -90,11 +90,17 @@ command += ","+String(end_y-height)+"\n"
 drawing.SendCommand(command)
 }
 
-// Переменные для построения размеров
+// Переменные для построения левых размеров
 var start_x
 var start_y
 var end_x
 var end_y
+
+// Переменные для построения правых размеров
+var start_x_r
+var start_y_r
+var end_x_r
+var end_y_r
 
 
 // Есть ли размеры
@@ -183,16 +189,29 @@ for (i=0; i<blocks_coord.length; i++) {
       !right_dim_exist &&
       (points_list[j][0]-blocks_coord[i][0]) > 0
     ) {
+      right_dim_exist = true
+      end_x_r = blocks_coord[i][0]
+      end_y_r = blocks_coord[i][1]
+      start_x_r = points_list[j][0]
+      start_y_r = points_list[j][1]
     }
     else { if (
       right_dim_exist &&
       (points_list[j][0]-blocks_coord[i][0]) > 0 &&
-      true
+      Math.abs(end_x - start_x) > 
+      Math.abs(end_x - points_list[j][0])
     ) {
+      start_x_r = points_list[j][0]
+      start_y_r = points_list[j][1]
       }
     }
   }
-  if (left_dim_exist) {draw_dim(start_x, start_y, end_x, end_y, height)}
+  if (left_dim_exist) {
+    draw_dim(start_x, start_y, end_x, end_y, height)
+  }
+  if (right_dim_exist) {
+    draw_dim(start_x_r, start_y_r, end_x_r, end_y_r, height)
+  }
   points_list = []
 }
 
