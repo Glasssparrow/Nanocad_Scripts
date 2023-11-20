@@ -7,20 +7,27 @@ var layers = db.Layers
 
 ut.Prompt("Начало работы скрипта")
 
+// Слои с данными
 var items_layer_name = "!Светильники"
 var lines_layer_name = "!Метки размеров"
+// Допустимая разница в высоте при которой светильники 
+// могут иметь привязку друг к другу.
 var height_difference_allowed = 1000
 // Высота размеров
 var height = 500
 
+// Переменные в которые мы записываем слои
 var items_layer
 var lines_layer
 
+// Переменные для хранения списков координат
 var blocks_coord = []
 var axis_segment = []
 
+// Количество найденных слоев
 var check = 0
 
+// Находим слои с соответствующими названиями
 for (i=0; i < layers.Count; i++) {
   if (layers.Item(i).Name == items_layer_name) {
     item_layer = layers.Item(i)
@@ -33,6 +40,7 @@ for (i=0; i < layers.Count; i++) {
   }
 }
 
+// Проверяем что слои найдены
 if (check < 2) {
   ut.Prompt("Не найден один из слоев");
 }
@@ -40,43 +48,38 @@ else {
   ut.Prompt("Оба слоя ("+items_layer_name+" и "+lines_layer_name+") найдены")
 }
 
+// Проходим по всем объектам и находим точки вставки блоков и 
+// отрезки из которых состоят полилинии
 for (i=0; i<model.Count; i++) {
-  //ut.Prompt(i)
-  //ut.Prompt(model.Item(i).ObjectName)
+  // Если это полилиния в нужном слое
   if (model.Item(i).ObjectName == "AcDbPolyline" && 
-      model.Item(i).Layer == "!Метки размеров") {
-    //ut.Prompt(model.Item(i).ObjectName + " " + model.Item(i).Layer)
+      model.Item(i).Layer == lines_layer_name) {
+    // Преобразуем в лист
     var VVV = ut.CreateSafeArrayFromVector(model.Item(i).Coordinates)
     var CoordArray = VVV.toArray()
-    //ut.Prompt(CoordArray.length)
+    // Формируем список отрезков из списка координат вершин
     for (j=0; j<(CoordArray.length/2-1);j++) {
-    //ut.Prompt(CoordArray)
-    var line_segment = [
-      [CoordArray[2*j], CoordArray[2*j+1]],
-      [CoordArray[2*j+2], CoordArray[2*j+3]]
-    ]
-    //ut.Prompt(line_segment)
+      var line_segment = [
+        [CoordArray[2*j], CoordArray[2*j+1]],
+        [CoordArray[2*j+2], CoordArray[2*j+3]]
+      ]
+    // Добавляем в лист
     axis_segment.push(line_segment)
     }
-    //ut.Prompt(CoordArray)
   }
+  // Если это блок в нужном слое
   if (model.Item(i).ObjectName == "AcDbBlockReference" && 
       model.Item(i).Layer == "!Светильники") {
-    //ut.Prompt(model.Item(i).ObjectName)
-    //ut.Prompt(model.Item(i).Layer)
-    //ut.Prompt("start test")
+    // Получаем точку вставки и преобразуем её в лист
     var AAA = model.Item(i).InsertionPoint
     var v1 = ut.CreateSafeArrayFromVector(AAA)
     var v2 = v1.toArray()
+    // Добавляем в лист
     blocks_coord.push(v2)
-    //ut.Prompt(v2)
-    //ut.Prompt("end test")
   }
 }
 
-//ut.Prompt(axis_segment)
-//ut.Prompt(blocks_coord)
-
+// Функция построения размера
 function draw_dim(start_x, start_y, end_x, end_y, height) {
 var command = (
 "Размер "+String(start_x)+","
@@ -86,9 +89,6 @@ command += String(end_x)
 command += ","+String(end_y-height)+"\n"
 drawing.SendCommand(command)
 }
-
-//draw_dim(start_x, start_y, end_x, end_y, height)
-//draw_dim(-200, start_y, end_x, end_y, height)
 
 // Переменные для построения размеров
 var start_x
@@ -205,7 +205,7 @@ for (i=0; i<blocks_coord.length; i++) {
     }
     //ut.Prompt(points_list[j])
   }
-  if (left_dim_exist) {draw_dim(start_x, start_y, end_x, end_y, height)}
+  //if (left_dim_exist) {draw_dim(start_x, start_y, end_x, end_y, height)}
   points_list = []
 }
 
